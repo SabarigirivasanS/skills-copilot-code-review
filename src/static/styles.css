@@ -129,7 +129,8 @@ section h3 {
   }
 
   .sidebar-filters {
-    width: 200px; /* Reduced from 250px to 200px to make the sidebar narrower */
+    width: 200px;
+    /* Reduced from 250px to 200px to make the sidebar narrower */
     position: sticky;
     top: 15px;
     max-height: calc(100vh - 30px);
@@ -361,12 +362,10 @@ button {
 .skeleton-line {
   height: 10px;
   margin-bottom: 8px;
-  background: linear-gradient(
-    90deg,
-    var(--border-light) 25%,
-    var(--border) 50%,
-    var(--border-light) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--border-light) 25%,
+      var(--border) 50%,
+      var(--border-light) 75%);
   background-size: 200% 100%;
   border-radius: 3px;
   animation: shimmer 1.5s infinite;
@@ -390,6 +389,7 @@ button {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -485,7 +485,8 @@ footer {
 
 .search-box input {
   flex: 1;
-  min-width: 0; /* Add this to prevent input from overflowing */
+  min-width: 0;
+  /* Add this to prevent input from overflowing */
   padding: 6px 10px;
   border: 1px solid var(--border);
   border-right: none;
@@ -502,8 +503,10 @@ footer {
 
 .search-box button {
   width: 36px;
-  height: 100%; /* Make button match input height */
-  min-height: 32px; /* Ensure minimum clickable area */
+  height: 100%;
+  /* Make button match input height */
+  min-height: 32px;
+  /* Ensure minimum clickable area */
   background: var(--primary);
   color: white;
   border: none;
@@ -663,4 +666,12 @@ footer {
 
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.announcement-banner {
+  background-color: var(--success);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
 }
