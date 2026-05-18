@@ -22,6 +22,10 @@
             <span>Login</span>
           </button>
           <div id="user-info" class="hidden">
+            <button id="manage-announcements-button" class="icon-button" title="Manage announcements">
+              <span class="user-icon">📢</span>
+              <span>Announcements</span>
+            </button>
             <span id="display-name"></span>
             <button id="logout-button">Logout</button>
           </div>
@@ -30,6 +34,9 @@
     </header>
 
     <main>
+      <!-- Announcement banners (driven by database) -->
+      <section id="announcements-banner" class="announcements-banner hidden" aria-live="polite"></section>
+
       <section id="activities-container">
         <div class="main-content-layout">
           <!-- Left Sidebar for Filters -->
@@ -131,6 +138,49 @@
           <button type="submit">Login</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Manage Announcements Modal -->
+    <div id="announcements-modal" class="modal hidden">
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal">&times;</span>
+        <h3>📢 Manage Announcements</h3>
+
+        <div class="announcements-toolbar">
+          <button id="new-announcement-button" class="primary-btn">＋ New announcement</button>
+        </div>
+
+        <form id="announcement-form" class="announcement-form hidden">
+          <input type="hidden" id="announcement-id" value="" />
+          <div class="form-group">
+            <label for="announcement-title">Title</label>
+            <input type="text" id="announcement-title" required maxlength="200" placeholder="Announcement title" />
+          </div>
+          <div class="form-group">
+            <label for="announcement-message">Message</label>
+            <textarea id="announcement-message" required maxlength="2000" rows="3" placeholder="What do you want to announce?"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="announcement-start">Start date <span class="muted">(optional)</span></label>
+              <input type="datetime-local" id="announcement-start" />
+            </div>
+            <div class="form-group">
+              <label for="announcement-expiration">Expiration date <span class="required-mark">*</span></label>
+              <input type="datetime-local" id="announcement-expiration" required />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="button" id="cancel-announcement-button" class="cancel-btn">Cancel</button>
+            <button type="submit" id="save-announcement-button" class="primary-btn">Save</button>
+          </div>
+          <div id="announcement-form-message" class="hidden message"></div>
+        </form>
+
+        <div id="announcements-list" class="announcements-list">
+          <p class="muted">Loading announcements…</p>
+        </div>
       </div>
     </div>
 

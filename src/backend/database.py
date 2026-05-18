@@ -2,6 +2,8 @@
 MongoDB database configuration and setup for Mergington High School API
 """
 
+from datetime import datetime, timedelta, timezone
+
 from pymongo import MongoClient
 from argon2 import PasswordHasher, exceptions as argon2_exceptions
 
@@ -10,6 +12,7 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['mergington_high']
 activities_collection = db['activities']
 teachers_collection = db['teachers']
+announcements_collection = db['announcements']
 
 # Methods
 
@@ -49,6 +52,18 @@ def init_database():
         for teacher in initial_teachers:
             teachers_collection.insert_one(
                 {"_id": teacher["username"], **teacher})
+
+    # Initialize announcements if empty
+    if announcements_collection.count_documents({}) == 0:
+        now = datetime.now(timezone.utc)
+        announcements_collection.insert_one({
+            "title": "Welcome to the new school year!",
+            "message": "Check out our updated extracurricular activities and sign up early to secure your spot.",
+            "start_date": now.isoformat(),
+            "expiration_date": (now + timedelta(days=30)).isoformat(),
+            "created_at": now.isoformat(),
+            "created_by": "principal",
+        })
 
 
 # Initial database if empty
