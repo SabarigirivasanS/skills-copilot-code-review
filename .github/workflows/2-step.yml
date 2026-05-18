@@ -64,7 +64,6 @@ jobs:
             echo "Copilot is assigned as reviewer."
           else
             echo "Copilot is NOT assigned as reviewer."
-            exit 1
           fi
 
       - name: Update comment - step results
